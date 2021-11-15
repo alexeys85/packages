@@ -37,7 +37,8 @@ define Package/smcroute/conffiles
 endef
 
 CONFIGURE_ARGS += \
-	--without-libcap
+	--without-libcap \
+	--enable-mrdisc
 
 define Package/smcroute/install
 	$(INSTALL_DIR) $(1)/usr/sbin
