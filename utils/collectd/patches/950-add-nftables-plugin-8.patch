@@ -1,0 +1,22 @@
+From 7aa5e6c3e0c67e4997228edc5357651fedb64a9e Mon Sep 17 00:00:00 2001
+From: "Jose M. Guisado Gomez" <guigom@riseup.net>
+Date: Sun, 26 Jul 2020 12:06:05 +0200
+Subject: [PATCH] nftables plugin: run format.sh
+
+---
+ src/nftables.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/nftables.c b/src/nftables.c
+index db50cde952..a053873e60 100644
+--- a/src/nftables.c
++++ b/src/nftables.c
+@@ -159,7 +159,7 @@ static int submit_cb(struct nftnl_expr *e, void *data) {
+ static int table_cb(const struct nlmsghdr *nlh, void *data) {
+   struct nftnl_rule *t;
+   char *filter_comment = (char *)data; /* config filter comment */
+-  char *udata_comment = NULL;   /* rule userdata comment */
++  char *udata_comment = NULL;          /* rule userdata comment */
+ 
+   t = nftnl_rule_alloc();
+   if (t == NULL) {
