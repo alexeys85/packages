@@ -94,6 +94,16 @@ config globals 'globals'
 #	option index '1'
 #	option name 'WLAN-Clients traffic'
 
+#config plugin 'nftables'
+#	option enable '1'
+
+#config nftables_match
+#	option family 'ip'
+#	option table 'bupd'
+#	option chain 'TRAFFIC_ACCNT'
+#	option index '1'
+#	option name 'WLAN-Clients traffic'
+
 #config plugin 'irq'
 #	option enable '0'
 #	list Irq '2'

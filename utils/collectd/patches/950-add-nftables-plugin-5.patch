@@ -1,0 +1,22 @@
+From df28534ce5f68dcde74d65c44d7eb4d757c4ca44 Mon Sep 17 00:00:00 2001
+From: "Jose M. Guisado Gomez" <guigom@riseup.net>
+Date: Fri, 24 Jul 2020 22:51:44 +0200
+Subject: [PATCH] nftables plugin: Use ERROR instead of perror
+
+---
+ src/nftables.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/nftables.c b/src/nftables.c
+index d89ea9b69c..1a6236e7e6 100644
+--- a/src/nftables.c
++++ b/src/nftables.c
+@@ -168,7 +168,7 @@ static int table_cb(const struct nlmsghdr *nlh, void *data) {
+   }
+ 
+   if (nftnl_rule_nlmsg_parse(nlh, t) < 0) {
+-    perror("nftnl_rule_nlmsg_parse");
++    ERROR("nftables plugin: Error parsing nlmsghdr");
+     goto err_free;
+   }
+ 
