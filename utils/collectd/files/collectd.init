@@ -172,6 +172,51 @@ process_iptables_sections() {
 	fi
 }
 
+process_nftables() {
+	local cfg="$1"
+
+	printf "<Plugin nftables>\n" >> "$COLLECTD_CONF"
+	config_foreach process_nftables_sections nftables_match
+	printf "</Plugin>\n\n" >> "$COLLECTD_CONF"
+}
+
+process_nftables_sections() {
+	local cfg="$1"
+
+	local family table chain
+
+	config_get family "$cfg" family
+	[ -z "$family" ] && {
+		$LOG notice "No family option in config $cfg defined"
+		return 0
+	}
+
+	config_get table "$cfg" table
+	[ -z "$table" ] && {
+		$LOG notice "No table option in config $cfg defined"
+		return 0
+	}
+
+	config_get chain "$cfg" chain
+	[ -z "$chain" ] && {
+		$LOG notice "No chain option in config $cfg defined"
+		return 0
+	}
+
+	config_get index "$cfg" index
+	[ -z "$index" ] && {
+		$LOG notice "No index option in config $cfg defined"
+		return 0
+	}
+
+	config_get name "$cfg" name
+	if [ -z "$name" ]; then
+		printf "\\t%s %s %s %s\n" "${family}" "${table}" "${chain}" "${index}" >> "$COLLECTD_CONF"
+	else
+		printf "\\t%s %s %s %s \"%s\"\n" "${family}" "${table}" "${chain}" "${index}" "${name}">> "$COLLECTD_CONF"
+	fi
+}
+
 CONFIG_LIST=""
 add_list_option() {
 	local value="$1"
@@ -276,6 +321,10 @@ process_plugins() {
 		iptables)
 			CONFIG_STRING=""
 			process_iptables
+			;;
+		nftables)
+			CONFIG_STRING=""
+			process_nftables
 			;;
 		*)
 			CONFIG_STRING=""
