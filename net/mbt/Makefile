@@ -15,15 +15,16 @@ include $(INCLUDE_DIR)/cmake.mk
 CMAKE_OPTIONS += -DCMAKE_BUILD_TYPE=Release
 
 define Package/mbt
-  SECTION:=net
-  CATEGORY:=Network
-  DEPENDS:=+libstdcpp +libconfig +libdw +libbfd +libelf
-  TITLE:=Failover tunnel implementation
+	SECTION:=net
+	CATEGORY:=Network
+	DEPENDS:=+libstdcpp +libconfig +libdw +libbfd +libelf
+	TITLE:=Failover tunnel implementation
 endef
 
 define Package/mbt/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mbt $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mbtctl $(1)/usr/sbin/
 endef
 
 $(eval $(call BuildPackage,mbt))
