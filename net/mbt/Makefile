@@ -1,7 +1,10 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mbt
-PKG_VERSION:=0.2.0
+PKG_VERSION:=0.3.0
+#PKG_SOURCE:=mbt-$(PKG_VERSION).zip
+#PKG_SOURCE_URL:=file://
+#PKG_HASH:=
 PKG_RELEASE:=$(AUTORELEASE)
 CMAKE_INSTALL:=1
 #do not strip backward symbols
