@@ -18,6 +18,7 @@ PKG_MIRROR_HASH:=30348a8c9c8f82a06c4e8dd9fa69f1b686b953379faa42ad634b32e065ec970
 CMAKE_INSTALL:=1
 
 PKG_LICENSE:=GPL-2.0-or-later
+PKG_BUILD_FLAGS:=lto
 PKG_MAINTAINER:=John Crispin <blogic@openwrt.org>
 
 include $(INCLUDE_DIR)/package.mk
@@ -33,6 +34,11 @@ endef
 
 define Package/cgi-io/description
   This package contains an cgi utility that is useful for up/downloading files
+endef
+
+define Build/Configure
+	find $(PKG_BUILD_DIR)/ -type f -name "CMakeLists.txt" -exec sed -i 's/-Os/-O2/g' {} +
+	$(call Build/Configure/Default)
 endef
 
 define Package/cgi-io/install
