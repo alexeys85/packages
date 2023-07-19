@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bupd-server
-PKG_VERSION:=0.0.4
+PKG_VERSION:=0.0.5
 #PKG_SOURCE:=mbt-$(PKG_VERSION).zip
 #PKG_SOURCE_URL:=file://
 #PKG_HASH:=
@@ -35,6 +35,8 @@ endef
 define Package/bupd-server/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bserver/bserver-app $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/etc
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/bserver/bserver-zlog.cfg $(1)/etc
 endef
 
 $(eval $(call BuildPackage,bupd-server))
