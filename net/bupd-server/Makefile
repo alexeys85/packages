@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bupd-server
-PKG_VERSION:=0.0.6
+PKG_VERSION:=0.1.1
 #PKG_SOURCE:=mbt-$(PKG_VERSION).zip
 #PKG_SOURCE_URL:=file://
 #PKG_HASH:=
